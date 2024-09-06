@@ -11,6 +11,6 @@ class ScribeFileReaderTest {
     @Test
     void txtStringReader() throws IOException {
         ScribeFileReader scribeFileReader = new ScribeFileReader();
-        Assertions.assertEquals("Alice", scribeFileReader.txtStringReader(txtString), "ScribeFileReader.txtStringReader() should return String 'Alice' from the test file: " + txtString);
+        Assertions.assertEquals("Alice\nJay", scribeFileReader.txtStringReader(txtString), "ScribeFileReader.txtStringReader() should return String 'Alice' from the test file: " + txtString);
     }
 }
