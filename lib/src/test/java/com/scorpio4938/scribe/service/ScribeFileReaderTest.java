@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 class ScribeFileReaderTest {
-    private final String txtString = System.getProperty("user.dir") + "/src/test/java/resources/exampleString.txt";
+    private final String txtString = System.getProperty("user.dir") + "/src/test/resources/exampleString.txt";
 
     @Test
     void txtStringReader() throws IOException {
