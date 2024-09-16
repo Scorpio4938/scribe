@@ -1,8 +1,8 @@
-# v 0.0 Basic Functions
+# v 0.1 Basic Functions
 
-## [dev] v0.0.1 Setting Up
+## [dev] v0.1.0 Setting Up
 
 ### Features
 
-* Name generator (English)
+* Default Name generator (English)
 * File Readers
