@@ -10,23 +10,21 @@ import java.util.List;
 public class ScribeDefaultEnglishNameGeneratorTest {
     private final String EngNamePath = "src/test/resources/names/exampleEngNames.txt";
 
-    private List<String> names;
+//    private List<String> names;
 
-    @Test
-    void init() throws IOException {
-        names = new ScribeFileReader().txtStringArrayListReader(EngNamePath);
+    List<String> readList() throws IOException {
 //        System.out.print(names);
-        Assertions.assertNotNull(names, "The name list for testing ScribeDefaultEnglishNameGenerator should not be null: " + EngNamePath);
+//        Assertions.assertNotNull(names, "The name list for testing ScribeDefaultEnglishNameGenerator should not be null: " + EngNamePath);
 //        Assertions.assertNotNull(this.names, "The name list for testing ScribeDefaultEnglishNameGenerator should not be null: " + EngNamePath);
+        return new ScribeFileReader().txtStringArrayListReader(EngNamePath);
     }
 
     @Test
     void generatorTest() throws IOException {
-        init();
-        Assertions.assertNotNull(names, "The name list for testing ScribeDefaultEnglishNameGenerator should not be null: " + EngNamePath);
-
+//        readList();
+//        Assertions.assertNotNull(names, "The name list for testing ScribeDefaultEnglishNameGenerator should not be null: " + EngNamePath);
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
         String generatedName = generator.generate(EngNamePath);
-        Assertions.assertTrue(names.contains(generatedName), "ScribeDefaultEnglishNameGenerator.generate() should return of name from: " + EngNamePath);
+        Assertions.assertTrue(readList().contains(generatedName), "ScribeDefaultEnglishNameGenerator.generate() should return of name from: " + EngNamePath);
     }
 }
