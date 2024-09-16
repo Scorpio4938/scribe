@@ -1,4 +1,4 @@
-package com.scorpio4938.scribe.service;
+package com.scorpio4938.scribe.service.reader;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class ScribeFileReaderTest {
     private final String txtNonExistPath = System.getProperty("user.dir") + "/src/test/resources/exampleNonExist.txt";
 
     @Test
-    void txtStringReader() throws IOException {
+    void txtStringReaderTest() throws IOException {
         ScribeFileReader scribeFileReader = new ScribeFileReader();
         Assertions.assertEquals("Alice\nJay", scribeFileReader.txtStringReader(txtStringPath), "ScribeFileReader.txtStringReader() should return String 'Alice' and 'Jay' from the test file: " + txtStringPath);
 
@@ -24,7 +24,7 @@ class ScribeFileReaderTest {
     }
 
     @Test
-    void txtStringArrayListReader() throws IOException {
+    void txtStringArrayListReaderTest() throws IOException {
         ScribeFileReader scribeFileReader = new ScribeFileReader();
         Assertions.assertEquals(List.of("Alice", "Jay"), scribeFileReader.txtStringArrayListReader(txtStringPath), "ScribeFileReader.txtStringArrayListReader() should return String 'Alice' and 'Jay' from the test file: " + txtStringPath);
 
@@ -33,7 +33,7 @@ class ScribeFileReaderTest {
     }
 
     @Test
-    void txtIntegerArrayListReader() throws IOException {
+    void txtIntegerArrayListReaderTest() throws IOException {
         ScribeFileReader scribeFileReader = new ScribeFileReader();
         Assertions.assertEquals(List.of(1, 2), scribeFileReader.txtIntegerArrayListReader(txtIntegerPath), "ScribeFileReader.txtIntegerArrayListReader() should return (List.of(1, 2) from the test file: " + txtIntegerPath);
         Assertions.assertEquals(List.of(1, 2), scribeFileReader.txtIntegerArrayListReader(txtStringMixIntegerPath), "ScribeFileReader.txtIntegerArrayListReader() should return (List.of(1, 2) from the test file: " + txtStringMixIntegerPath);
@@ -43,7 +43,7 @@ class ScribeFileReaderTest {
     }
 
     @Test
-    void txtIntArrayReader() throws IOException {
+    void txtIntArrayReaderTest() throws IOException {
         ScribeFileReader scribeFileReader = new ScribeFileReader();
         int[] numbers = {1, 2};
         int[] emptys = {};

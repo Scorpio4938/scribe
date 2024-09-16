@@ -1,4 +1,4 @@
-package com.scorpio4938.scribe.service;
+package com.scorpio4938.scribe.service.reader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
