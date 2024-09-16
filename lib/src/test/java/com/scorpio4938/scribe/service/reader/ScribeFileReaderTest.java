@@ -8,11 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 
 class ScribeFileReaderTest {
-    private final String txtStringPath = System.getProperty("user.dir") + "/src/test/resources/exampleString.txt";
-    private final String txtIntegerPath = System.getProperty("user.dir") + "/src/test/resources/exampleInteger.txt";
-    private final String txtStringMixIntegerPath = System.getProperty("user.dir") + "/src/test/resources/exampleInteger.txt";
-    private final String txtEmptyPath = System.getProperty("user.dir") + "/src/test/resources/exampleEmpty.txt";
-    private final String txtNonExistPath = System.getProperty("user.dir") + "/src/test/resources/exampleNonExist.txt";
+    private final String txtStringPath = "src/test/resources/exampleString.txt";
+    private final String txtIntegerPath = "src/test/resources/exampleInteger.txt";
+    private final String txtStringMixIntegerPath = "src/test/resources/exampleInteger.txt";
+    private final String txtEmptyPath = "src/test/resources/exampleEmpty.txt";
+    private final String txtNonExistPath = "src/test/resources/exampleNonExist.txt";
 
     @Test
     void txtStringReaderTest() throws IOException {

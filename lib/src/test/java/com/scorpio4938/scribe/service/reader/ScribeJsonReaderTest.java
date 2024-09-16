@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 public class ScribeJsonReaderTest {
-    private final String JsonPath = System.getProperty("user.dir") + "/src/test/resources/exampleJson.json";
-    private final String JsonArrayPath = System.getProperty("user.dir") + "/src/test/resources/exampleArray.json";
+    private final String JsonPath = "src/test/resources/exampleJson.json";
+    private final String JsonArrayPath = "src/test/resources/exampleArray.json";
 
     @Test
     public void readJsonTest() throws IOException {
