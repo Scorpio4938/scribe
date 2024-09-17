@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
-    private final String DefaultFirstNamePath = "lib/src/main/resources/uk_male_first_names.txt";
+    private final String DefaultFirstNamePath = "lib/src/main/resources/names/uk_male_first_names.txt";
 
     @Override
     public String generate(String filepath) throws IOException {
