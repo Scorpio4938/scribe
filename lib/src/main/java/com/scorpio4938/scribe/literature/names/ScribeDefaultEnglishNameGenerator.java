@@ -4,6 +4,7 @@ import com.scorpio4938.scribe.literature.LitGenerator;
 import com.scorpio4938.scribe.service.reader.ScribeFileReader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -37,23 +38,23 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      *
      * @param filePath The path to the file.
      * @param num      The number of name needed.
-     * @return A number of random single name.
+     * @return A list of random single names.
      * @throws IOException If an I/O error occurs.
      * @since v0.1.0
      */
-    public String generate(String filePath, int num) throws IOException {
-        StringBuilder name = new StringBuilder();
+    public List<String> generate(String filePath, int num) throws IOException {
+        List<String> names = new ArrayList<>();
         String temp = "";
-        for (int i = 0; i < num - 1; i++) {
+        for (int i = 0; i < num; i++) {
             String generated = generate(filePath);
             if (!generated.equals(temp)) {
-                name.append(generated);
+                names.add(generated);
                 temp = generated;
             } else {
                 i -= 1;
             }
         }
-        return name.toString();
+        return names;
     }
 
     /**
@@ -74,7 +75,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @throws IOException If an I/O error occurs.
      * @since v0.1.0
      */
-    public String generateDefaultMiddleName(int num) throws IOException {
+    public List<String> generateDefaultMiddleName(int num) throws IOException {
         return generate(DefaultMiddleNamePath, num | 1);
     }
 
