@@ -48,4 +48,11 @@ public class ScribeDefaultEnglishNameGeneratorTest {
         System.out.print(generatedName + "\n");
         Assertions.assertNotNull(generatedName, "ScribeDefaultEnglishNameGenerator.generateDefaultFirstName() should not be return null from its default file path.");
     }
+
+    @Test
+    void generateDefaultMiddleNameTest() throws IOException {
+        ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
+        Assertions.assertEquals(1, generator.generateDefaultMiddleName().size(), "ScribeDefaultEnglishNameGenerator.generateDefaultMiddleName() should return 1 middle name.");
+        Assertions.assertEquals(2, generator.generateDefaultMiddleName(2).size(), "ScribeDefaultEnglishNameGenerator.generateDefaultMiddleName() should return a number of middle name.");
+    }
 }

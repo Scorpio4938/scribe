@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public interface LitGenerator {
     // This is the interface for all literal generators.
-    // Includes main functions
+    // Includes main functions.
 
     String generate(String filePath) throws IOException;
 }

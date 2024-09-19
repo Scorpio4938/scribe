@@ -3,6 +3,7 @@ package com.scorpio4938.scribe.literature.names;
 import com.scorpio4938.scribe.literature.LitGenerator;
 import com.scorpio4938.scribe.service.reader.ScribeFileReader;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,14 +70,26 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
     }
 
     /**
+     * Generate a given number of random middle name from the default path.
+     *
+     * @param num The number of middle names.
+     * @return A random middle name.
+     * @throws IOException If an I/O error occurs.
+     * @since v0.1.0
+     */
+    public List<String> generateDefaultMiddleName(int num) throws IOException {
+        return generate(DefaultMiddleNamePath, num);
+    }
+
+    /**
      * Generate a random middle name from the default path.
      *
      * @return A random middle name.
      * @throws IOException If an I/O error occurs.
      * @since v0.1.0
      */
-    public List<String> generateDefaultMiddleName(int num) throws IOException {
-        return generate(DefaultMiddleNamePath, num | 1);
+    public List<String> generateDefaultMiddleName() throws IOException {
+        return generate(DefaultMiddleNamePath, 1);
     }
 
     /**
@@ -90,6 +103,15 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
         return generate(DefaultLastNamePath);
     }
 
+
+    /**
+     * Generate a full name with a number of middle name.
+     *
+     * @param num The number of middle names.
+     * @return A full name.
+     * @throws IOException If an I/O error occurs.
+     * @since v0.1.0
+     */
     public String generateDefaultName(int num) throws IOException {
         return generateDefaultFirstName() + " " + generateDefaultLastName();
     }
