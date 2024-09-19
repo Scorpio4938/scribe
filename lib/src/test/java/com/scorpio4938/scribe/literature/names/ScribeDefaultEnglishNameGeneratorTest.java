@@ -33,10 +33,12 @@ public class ScribeDefaultEnglishNameGeneratorTest {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
         String generatedName = generator.generate(EngNamePath);
         List<String> generatedName2 = generator.generate(EngNamePath, 2);
+        System.out.print(String.join(" ", generatedName2) + "\n");
         Assertions.assertTrue(readExampleList().contains(generatedName), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return of name from: " + EngNamePath);
 //        Assertions.assertTrue(readExampleList().contains(generatedName2), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return of name from: " + EngNamePath);
         Assertions.assertEquals(2, generatedName2.size(), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return 2 name from: " + EngNamePath);
         Assertions.assertTrue(readExampleList().contains(generatedName2.get(0)), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return a number of name from: " + EngNamePath);
+        Assertions.assertTrue(readExampleList().contains(generatedName2.get(1)), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return a number of name from: " + EngNamePath);
     }
 
     @Test
