@@ -24,17 +24,17 @@ public class ScribeDefaultEnglishNameGeneratorTest {
 //        readExampleList();
 //        Assertions.assertNotNull(names, "The name list for testing ScribeDefaultEnglishNameGenerator should not be null: " + EngNamePath);
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
-        String generatedName = generator.generate(EngNamePath);
-        Assertions.assertTrue(readExampleList().contains(generatedName), "ScribeDefaultEnglishNameGenerator.generate(filePath) should return of name from: " + EngNamePath);
+        List<String> generatedName = generator.generate(EngNamePath);
+        Assertions.assertTrue(readExampleList().contains(generatedName.get(0)), "ScribeDefaultEnglishNameGenerator.generate(filePath) should return of name from: " + EngNamePath);
     }
 
     @Test
     void generateWithNumTest() throws IOException {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
-        String generatedName = generator.generate(EngNamePath);
+        List<String> generatedName = generator.generate(EngNamePath);
         List<String> generatedName2 = generator.generate(EngNamePath, 2);
         System.out.print(String.join(" ", generatedName2) + "\n");
-        Assertions.assertTrue(readExampleList().contains(generatedName), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return of name from: " + EngNamePath);
+        Assertions.assertTrue(readExampleList().contains(generatedName.get(0)), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return of name from: " + EngNamePath);
 //        Assertions.assertTrue(readExampleList().contains(generatedName2), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return of name from: " + EngNamePath);
         Assertions.assertEquals(2, generatedName2.size(), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return 2 name from: " + EngNamePath);
         Assertions.assertTrue(readExampleList().contains(generatedName2.get(0)), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return a number of name from: " + EngNamePath);
@@ -44,8 +44,8 @@ public class ScribeDefaultEnglishNameGeneratorTest {
     @Test
     void generateDefaultFirstNameTest() throws IOException {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
-        String generatedName = generator.generateDefaultFirstName();
-        System.out.print(generatedName + "\n");
+        List<String> generatedName = generator.generateDefaultFirstName();
+        System.out.print(generatedName.toString() + "\n");
         Assertions.assertNotNull(generatedName, "ScribeDefaultEnglishNameGenerator.generateDefaultFirstName() should not be return null from its default file path.");
     }
 
@@ -58,15 +58,15 @@ public class ScribeDefaultEnglishNameGeneratorTest {
 
     @Test
     void generateDefaultLastNameTest() throws IOException {
-
+        ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
     }
 
     @Test
     void generateDefaultNameTest() throws IOException {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
-        String generated = generator.generateDefaultName();
-        String generated2 = generator.generateDefaultName(2);
-        System.out.print(generated + "\n");
-        System.out.print(generated2 + "\n");
+        List<String> generated = generator.generateDefaultName();
+        List<String> generated2 = generator.generateDefaultName(2);
+        System.out.print(generated.toString() + "\n");
+        System.out.print(generated2.toString() + "\n");
     }
 }

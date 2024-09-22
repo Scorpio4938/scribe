@@ -31,11 +31,11 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     @Override
-    public String generate(String filePath) throws IOException {
+    public List<String> generate(String filePath) throws IOException {
         ScribeFileReader reader = new ScribeFileReader();
         Random random = new Random();
         List<String> nameList = reader.txtStringArrayListReader(filePath);
-        return nameList.get(random.nextInt(nameList.size()));
+        return List.of(nameList.get(random.nextInt(nameList.size())));
     }
 
     /**
@@ -51,10 +51,10 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
         List<String> names = new ArrayList<>();
         String temp = "";
         for (int i = 0; i < num; i++) {
-            String generated = generate(filePath);
-            if (!generated.equals(temp)) {
-                names.add(generated);
-                temp = generated;
+            List<String> generated = generate(filePath);
+            if (!generated.equals(List.of(temp))) {
+                names.add(generated.get(0));
+                temp = generated.get(0);
             } else {
                 i -= 1;
             }
@@ -69,7 +69,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @throws IOException If an I/O error occurs.
      * @since v0.1.0
      */
-    public String generateDefaultFirstName() throws IOException {
+    public List<String> generateDefaultFirstName() throws IOException {
         return generate(DefaultUKEngFirstNamePath);
     }
 
@@ -103,7 +103,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @throws IOException If an I/O error occurs.
      * @since v0.1.0
      */
-    public String generateDefaultLastName() throws IOException {
+    public List<String> generateDefaultLastName() throws IOException {
         return generate(DefaultUKEngLastNamePath);
     }
 
@@ -114,8 +114,12 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @throws IOException If an I/O error occurs.
      * @since v0.1.0
      */
-    public String generateDefaultName() throws IOException {
-        return generateDefaultFirstName() + generateDefaultMiddleName() + generateDefaultLastName();
+    public List<String> generateDefaultName() throws IOException {
+        List<String> names = new ArrayList<>();
+        names.addAll(generateDefaultFirstName());
+        names.addAll(generateDefaultMiddleName());
+        names.addAll(generateDefaultLastName());
+        return names;
     }
 
     /**
@@ -126,7 +130,11 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @throws IOException If an I/O error occurs.
      * @since v0.1.0
      */
-    public String generateDefaultName(int num) throws IOException {
-        return generateDefaultFirstName() + generateDefaultMiddleName(num) + generateDefaultLastName();
+    public List<String> generateDefaultName(int num) throws IOException {
+        List<String> names = new ArrayList<>();
+        names.addAll(generateDefaultFirstName());
+        names.addAll(generateDefaultMiddleName(num));
+        names.addAll(generateDefaultLastName());
+        return names;
     }
 }
