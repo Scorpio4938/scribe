@@ -6,5 +6,7 @@ public interface LitGenerator {
     // This is the interface for all literal generators.
     // Includes main functions.
 
+    void init();
+
     String generate(String filePath) throws IOException;
 }

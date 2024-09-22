@@ -3,18 +3,22 @@ package com.scorpio4938.scribe.literature.names;
 import com.scorpio4938.scribe.literature.LitGenerator;
 import com.scorpio4938.scribe.service.reader.ScribeFileReader;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
-    private String DefaultFirstNamePath = "src/main/resources/names/uk_male_first_names.txt";
-    private String DefaultLastNamePath = "src/main/resources/names/uk_male_last_names.txt";
-    private String DefaultMiddleNamePath = "src/main/resources/names/uk_male_middle_names.txt";
+    private final String DefaultUKEngFirstNamePath = "src/main/resources/names/uk_male_first_names.txt";
+    private final String DefaultUKEngMiddleNamePath = "src/main/resources/names/uk_male_middle_names.txt";
+    private final String DefaultUKEngLastNamePath = "src/main/resources/names/uk_male_last_names.txt";
 
     public ScribeDefaultEnglishNameGenerator() {
+        init();
+    }
+
+    @Override
+    public void init() {
 
     }
 
@@ -66,7 +70,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public String generateDefaultFirstName() throws IOException {
-        return generate(DefaultFirstNamePath);
+        return generate(DefaultUKEngFirstNamePath);
     }
 
     /**
@@ -78,7 +82,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public List<String> generateDefaultMiddleName(int num) throws IOException {
-        return generate(DefaultMiddleNamePath, num);
+        return generate(DefaultUKEngMiddleNamePath, num);
     }
 
     /**
@@ -89,7 +93,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public List<String> generateDefaultMiddleName() throws IOException {
-        return generate(DefaultMiddleNamePath, 1);
+        return generate(DefaultUKEngMiddleNamePath, 1);
     }
 
     /**
@@ -100,7 +104,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public String generateDefaultLastName() throws IOException {
-        return generate(DefaultLastNamePath);
+        return generate(DefaultUKEngLastNamePath);
     }
 
 
