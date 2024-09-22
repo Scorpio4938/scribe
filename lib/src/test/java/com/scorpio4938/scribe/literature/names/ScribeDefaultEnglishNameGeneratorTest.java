@@ -1,6 +1,7 @@
 package com.scorpio4938.scribe.literature.names;
 
 import com.scorpio4938.scribe.service.reader.ScribeFileReader;
+import com.scorpio4938.scribe.service.utils.ScribeStringProcessor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -33,8 +34,9 @@ public class ScribeDefaultEnglishNameGeneratorTest {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
         List<String> generatedName = generator.generate(EngNamePath);
         List<String> generatedName2 = generator.generate(EngNamePath, 2);
-        System.out.print(String.join(" ", generatedName2) + "\n");
+        System.out.print(ScribeStringProcessor.joinList(generatedName2) + "\n");
         Assertions.assertTrue(readExampleList().contains(generatedName.get(0)), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return of name from: " + EngNamePath);
+
 //        Assertions.assertTrue(readExampleList().contains(generatedName2), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return of name from: " + EngNamePath);
         Assertions.assertEquals(2, generatedName2.size(), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return 2 name from: " + EngNamePath);
         Assertions.assertTrue(readExampleList().contains(generatedName2.get(0)), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return a number of name from: " + EngNamePath);
@@ -45,7 +47,7 @@ public class ScribeDefaultEnglishNameGeneratorTest {
     void generateDefaultFirstNameTest() throws IOException {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
         List<String> generatedName = generator.generateDefaultFirstName();
-        System.out.print(generatedName.toString() + "\n");
+        System.out.print(ScribeStringProcessor.joinList(generatedName) + "\n");
         Assertions.assertNotNull(generatedName, "ScribeDefaultEnglishNameGenerator.generateDefaultFirstName() should not be return null from its default file path.");
     }
 
@@ -66,7 +68,7 @@ public class ScribeDefaultEnglishNameGeneratorTest {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
         List<String> generated = generator.generateDefaultName();
         List<String> generated2 = generator.generateDefaultName(2);
-        System.out.print(generated.toString() + "\n");
-        System.out.print(generated2.toString() + "\n");
+        System.out.print(ScribeStringProcessor.joinList(generated) + "\n");
+        System.out.print(ScribeStringProcessor.joinList(generated2) + "\n");
     }
 }
