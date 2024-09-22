@@ -55,4 +55,18 @@ public class ScribeDefaultEnglishNameGeneratorTest {
         Assertions.assertEquals(1, generator.generateDefaultMiddleName().size(), "ScribeDefaultEnglishNameGenerator.generateDefaultMiddleName() should return 1 middle name.");
         Assertions.assertEquals(2, generator.generateDefaultMiddleName(2).size(), "ScribeDefaultEnglishNameGenerator.generateDefaultMiddleName() should return a number of middle name.");
     }
+
+    @Test
+    void generateDefaultLastNameTest() throws IOException {
+
+    }
+
+    @Test
+    void generateDefaultNameTest() throws IOException {
+        ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
+        String generated = generator.generateDefaultName();
+        String generated2 = generator.generateDefaultName(2);
+        System.out.print(generated + "\n");
+        System.out.print(generated2 + "\n");
+    }
 }

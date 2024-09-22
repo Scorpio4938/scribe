@@ -107,6 +107,16 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
         return generate(DefaultUKEngLastNamePath);
     }
 
+    /**
+     * Generate a full name with a number of middle name.
+     *
+     * @return A full name.
+     * @throws IOException If an I/O error occurs.
+     * @since v0.1.0
+     */
+    public String generateDefaultName() throws IOException {
+        return generateDefaultFirstName() + generateDefaultMiddleName() + generateDefaultLastName();
+    }
 
     /**
      * Generate a full name with a number of middle name.
@@ -117,6 +127,6 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public String generateDefaultName(int num) throws IOException {
-        return generateDefaultFirstName() + " " + generateDefaultLastName();
+        return generateDefaultFirstName() + generateDefaultMiddleName(num) + generateDefaultLastName();
     }
 }
