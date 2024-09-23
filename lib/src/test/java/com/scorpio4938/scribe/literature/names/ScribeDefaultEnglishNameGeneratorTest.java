@@ -61,6 +61,7 @@ public class ScribeDefaultEnglishNameGeneratorTest {
     @Test
     void generateDefaultLastNameTest() throws IOException {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
+        Assertions.assertEquals(1, generator.generateDefaultMiddleName().size(), "ScribeDefaultEnglishNameGenerator.generateDefaultLastName() should return 1 last name.");
     }
 
     @Test

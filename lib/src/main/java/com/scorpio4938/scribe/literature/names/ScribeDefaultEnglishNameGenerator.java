@@ -13,7 +13,15 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
     private final String DefaultUKEngMiddleNamePath = "src/main/resources/names/uk_male_middle_names.txt";
     private final String DefaultUKEngLastNamePath = "src/main/resources/names/uk_male_last_names.txt";
 
+    private String FirstNamePath;
+    private String MiddleNamePath;
+    private String LastNamePath;
+
     public ScribeDefaultEnglishNameGenerator() {
+        // Temp settings for now, waiting for further language settings
+        this.FirstNamePath = DefaultUKEngFirstNamePath;
+        this.MiddleNamePath = DefaultUKEngMiddleNamePath;
+        this.LastNamePath = DefaultUKEngLastNamePath;
         init();
     }
 
@@ -51,7 +59,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
         List<String> names = new ArrayList<>();
         String temp = "";
         for (int i = 0; i < num; i++) {
-            List<String> generated = generate(filePath);
+            List<String> generated = this.generate(filePath);
             if (!generated.equals(List.of(temp))) {
                 names.add(generated.get(0));
                 temp = generated.get(0);
@@ -70,7 +78,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public List<String> generateDefaultFirstName() throws IOException {
-        return generate(DefaultUKEngFirstNamePath);
+        return this.generate(DefaultUKEngFirstNamePath);
     }
 
     /**
@@ -82,7 +90,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public List<String> generateDefaultMiddleName(int num) throws IOException {
-        return generate(DefaultUKEngMiddleNamePath, num);
+        return this.generate(DefaultUKEngMiddleNamePath, num);
     }
 
     /**
@@ -93,7 +101,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public List<String> generateDefaultMiddleName() throws IOException {
-        return generate(DefaultUKEngMiddleNamePath, 1);
+        return this.generate(DefaultUKEngMiddleNamePath, 1);
     }
 
     /**
@@ -104,7 +112,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public List<String> generateDefaultLastName() throws IOException {
-        return generate(DefaultUKEngLastNamePath);
+        return this.generate(DefaultUKEngLastNamePath);
     }
 
     /**
@@ -116,9 +124,9 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      */
     public List<String> generateDefaultName() throws IOException {
         List<String> names = new ArrayList<>();
-        names.addAll(generateDefaultFirstName());
-        names.addAll(generateDefaultMiddleName());
-        names.addAll(generateDefaultLastName());
+        names.addAll(this.generateDefaultFirstName());
+        names.addAll(this.generateDefaultMiddleName());
+        names.addAll(this.generateDefaultLastName());
         return names;
     }
 
@@ -132,9 +140,9 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      */
     public List<String> generateDefaultName(int num) throws IOException {
         List<String> names = new ArrayList<>();
-        names.addAll(generateDefaultFirstName());
-        names.addAll(generateDefaultMiddleName(num));
-        names.addAll(generateDefaultLastName());
+        names.addAll(this.generateDefaultFirstName());
+        names.addAll(this.generateDefaultMiddleName(num));
+        names.addAll(this.generateDefaultLastName());
         return names;
     }
 }
