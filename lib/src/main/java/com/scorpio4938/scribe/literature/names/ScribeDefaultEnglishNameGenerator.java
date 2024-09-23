@@ -123,11 +123,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @since v0.1.0
      */
     public List<String> generateDefaultName() throws IOException {
-        List<String> names = new ArrayList<>();
-        names.addAll(this.generateDefaultFirstName());
-        names.addAll(this.generateDefaultMiddleName());
-        names.addAll(this.generateDefaultLastName());
-        return names;
+        return this.generateDefaultName(1);
     }
 
     /**
@@ -150,6 +146,18 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * Generate a full name with a number of middle name.
      *
      * @param title The title of the name.
+     * @return A full name.
+     * @throws IOException If an I/O error occurs.
+     * @since v0.1.0
+     */
+    public List<String> generateDefaultName(String title) throws IOException {
+        return this.generateDefaultName(title, 1);
+    }
+
+    /**
+     * Generate a full name with a number of middle name.
+     *
+     * @param title The title of the name.
      * @param num   The number of middle names.
      * @return A full name.
      * @throws IOException If an I/O error occurs.
@@ -158,26 +166,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
     public List<String> generateDefaultName(String title, int num) throws IOException {
         List<String> names = new ArrayList<>();
         names.add(title);
-        names.addAll(this.generateDefaultFirstName());
-        names.addAll(this.generateDefaultMiddleName(num));
-        names.addAll(this.generateDefaultLastName());
-        return names;
-    }
-
-    /**
-     * Generate a full name with a number of middle name.
-     *
-     * @param title The title of the name.
-     * @return A full name.
-     * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
-     */
-    public List<String> generateDefaultName(String title) throws IOException {
-        List<String> names = new ArrayList<>();
-        names.add(title);
-        names.addAll(this.generateDefaultFirstName());
-        names.addAll(this.generateDefaultMiddleName());
-        names.addAll(this.generateDefaultLastName());
+        names.addAll(this.generateDefaultName(num));
         return names;
     }
 }
