@@ -1,5 +1,6 @@
 package com.scorpio4938.scribe.literature.names;
 
+import com.scorpio4938.scribe.literature.Language;
 import com.scorpio4938.scribe.literature.LitGenerator;
 import com.scorpio4938.scribe.service.reader.ScribeFileReader;
 
@@ -9,25 +10,41 @@ import java.util.List;
 import java.util.Random;
 
 public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
-    private final String DefaultUKEngFirstNamePath = "src/main/resources/names/uk_male_first_names.txt";
-    private final String DefaultUKEngMiddleNamePath = "src/main/resources/names/uk_male_middle_names.txt";
-    private final String DefaultUKEngLastNamePath = "src/main/resources/names/uk_male_last_names.txt";
+    private final String DefaultUKEngFirstNamePath = "src/main/resources/names/en/uk_male_first_names.txt";
+    private final String DefaultUKEngMiddleNamePath = "src/main/resources/names/en/uk_male_middle_names.txt";
+    private final String DefaultUKEngLastNamePath = "src/main/resources/names/en/uk_male_last_names.txt";
 
     private String FirstNamePath;
     private String MiddleNamePath;
     private String LastNamePath;
+
+    private String langCode;
+    private String DefaultlangCode = "en_uk";
+    private Language lang;
 
     public ScribeDefaultEnglishNameGenerator() {
         // Temp settings for now, waiting for further language settings
         this.FirstNamePath = this.DefaultUKEngFirstNamePath;
         this.MiddleNamePath = this.DefaultUKEngMiddleNamePath;
         this.LastNamePath = this.DefaultUKEngLastNamePath;
+
+        this.langCode = this.DefaultlangCode;
+        init();
+    }
+
+    public ScribeDefaultEnglishNameGenerator(String langCode) {
+        // Temp settings for now, waiting for further language settings
+        this.FirstNamePath = this.DefaultUKEngFirstNamePath;
+        this.MiddleNamePath = this.DefaultUKEngMiddleNamePath;
+        this.LastNamePath = this.DefaultUKEngLastNamePath;
+
+        this.langCode = langCode;
         init();
     }
 
     @Override
     public void init() {
-
+        this.lang = new Language(this.langCode);
     }
 
     /**
@@ -55,6 +72,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @throws IOException If an I/O error occurs.
      * @since v0.1.0
      */
+    @Override
     public List<String> generate(String filePath, int num) throws IOException {
         List<String> names = new ArrayList<>();
         String temp = "";
@@ -69,6 +87,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
         }
         return names;
     }
+
 
     /**
      * Generate a random first name from the default path.
@@ -168,5 +187,16 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
         names.add(title);
         names.addAll(this.generateDefaultName(num));
         return names;
+    }
+
+    //utils
+    @Override
+    public String getLangCode() {
+        return this.langCode;
+    }
+
+    @Override
+    public Language getLang() {
+        return this.lang;
     }
 }

@@ -9,5 +9,14 @@ public interface LitGenerator {
 
     void init();
 
+//    List<String> read() throws IOException;
+
     List<String> generate(String filePath) throws IOException;
+
+    List<String> generate(String filePath, int num) throws IOException;
+
+    //utils
+    String getLangCode();
+
+    Language getLang();
 }
