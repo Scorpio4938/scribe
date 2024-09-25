@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Random;
 
 public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
+    private final String ResourceNamePath = "src/main/resources/names/";
+
     private final String DefaultUKEngFirstNamePath = "src/main/resources/names/en/uk_male_first_names.txt";
     private final String DefaultUKEngMiddleNamePath = "src/main/resources/names/en/uk_male_middle_names.txt";
     private final String DefaultUKEngLastNamePath = "src/main/resources/names/en/uk_male_last_names.txt";
@@ -18,15 +20,15 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
     private String MiddleNamePath;
     private String LastNamePath;
 
+    private final String DefaultlangCode = "en_uk";
     private String langCode;
-    private String DefaultlangCode = "en_uk";
     private Language lang;
 
     public ScribeDefaultEnglishNameGenerator() {
         // Temp settings for now, waiting for further language settings
-        this.FirstNamePath = this.DefaultUKEngFirstNamePath;
-        this.MiddleNamePath = this.DefaultUKEngMiddleNamePath;
-        this.LastNamePath = this.DefaultUKEngLastNamePath;
+//        this.FirstNamePath = this.DefaultUKEngFirstNamePath;
+//        this.MiddleNamePath = this.DefaultUKEngMiddleNamePath;
+//        this.LastNamePath = this.DefaultUKEngLastNamePath;
 
         this.langCode = this.DefaultlangCode;
         init();
@@ -34,9 +36,9 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
 
     public ScribeDefaultEnglishNameGenerator(String langCode) {
         // Temp settings for now, waiting for further language settings
-        this.FirstNamePath = this.DefaultUKEngFirstNamePath;
-        this.MiddleNamePath = this.DefaultUKEngMiddleNamePath;
-        this.LastNamePath = this.DefaultUKEngLastNamePath;
+//        this.FirstNamePath = this.DefaultUKEngFirstNamePath;
+//        this.MiddleNamePath = this.DefaultUKEngMiddleNamePath;
+//        this.LastNamePath = this.DefaultUKEngLastNamePath;
 
         this.langCode = langCode;
         init();
@@ -45,6 +47,21 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
     @Override
     public void init() {
         this.lang = new Language(this.langCode);
+        this.FirstNamePath = this.setPath("male", "first_names");
+        this.MiddleNamePath = this.setPath("male", "middle_names");
+        this.LastNamePath = this.setPath("male", "last_names");
+    }
+
+    /**
+     * Set the path from the gender, name-place, and lang.
+     *
+     * @param gender    The gender of the path.
+     * @param nameplace The name-place of the path (first, middle, last).
+     * @return A path.
+     * @since v0.1.0
+     */
+    public String setPath(String gender, String nameplace) {
+        return ResourceNamePath + lang.getLang() + "/" + lang.getRegion() + "_" + gender + "_" + nameplace + ".txt";
     }
 
     /**

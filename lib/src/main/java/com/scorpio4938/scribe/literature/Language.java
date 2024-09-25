@@ -34,6 +34,14 @@ public class Language {
         return code;
     }
 
+    public String getLang() {
+        return code.split("_")[0];
+    }
+
+    public String getRegion() {
+        return code.split("_")[1];
+    }
+
     public Map<String, List<String>> getLanguageFamilies() {
         return LANGUAGE_FAMILIES;
     }
