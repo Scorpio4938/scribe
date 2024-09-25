@@ -11,17 +11,19 @@ import java.util.Random;
 
 public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
     private final String ResourceNamePath = "src/main/resources/names/";
+    private final String DefaultLangCode = "en_uk";
+    private final String DefaultGender = "male"; // This is for the simplicity of code.
 
-    private final String DefaultUKEngFirstNamePath = "src/main/resources/names/en/uk_male_first_names.txt";
-    private final String DefaultUKEngMiddleNamePath = "src/main/resources/names/en/uk_male_middle_names.txt";
-    private final String DefaultUKEngLastNamePath = "src/main/resources/names/en/uk_male_last_names.txt";
+//    private final String DefaultUKEngFirstNamePath = "src/main/resources/names/en/uk_male_first_names.txt";
+//    private final String DefaultUKEngMiddleNamePath = "src/main/resources/names/en/uk_male_middle_names.txt";
+//    private final String DefaultUKEngLastNamePath = "src/main/resources/names/en/uk_male_last_names.txt";
 
     private String FirstNamePath;
     private String MiddleNamePath;
     private String LastNamePath;
 
-    private final String DefaultlangCode = "en_uk";
-    private String langCode;
+    private String langCode = this.DefaultLangCode;
+    private String gender = this.DefaultGender;
     private Language lang;
 
     public ScribeDefaultEnglishNameGenerator() {
@@ -30,26 +32,27 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
 //        this.MiddleNamePath = this.DefaultUKEngMiddleNamePath;
 //        this.LastNamePath = this.DefaultUKEngLastNamePath;
 
-        this.langCode = this.DefaultlangCode;
+//        this.langCode = this.DefaultlangCode;
         init();
     }
 
-    public ScribeDefaultEnglishNameGenerator(String langCode) {
+    public ScribeDefaultEnglishNameGenerator(String langCode, String gender) {
         // Temp settings for now, waiting for further language settings
 //        this.FirstNamePath = this.DefaultUKEngFirstNamePath;
 //        this.MiddleNamePath = this.DefaultUKEngMiddleNamePath;
 //        this.LastNamePath = this.DefaultUKEngLastNamePath;
 
         this.langCode = langCode;
+        this.gender = gender;
         init();
     }
 
     @Override
     public void init() {
         this.lang = new Language(this.langCode);
-        this.FirstNamePath = this.setPath("male", "first_names");
-        this.MiddleNamePath = this.setPath("male", "middle_names");
-        this.LastNamePath = this.setPath("male", "last_names");
+        this.FirstNamePath = this.setPath(this.gender, "first_names");
+        this.MiddleNamePath = this.setPath(this.gender, "middle_names");
+        this.LastNamePath = this.setPath(this.gender, "last_names");
     }
 
     /**
@@ -215,5 +218,9 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
     @Override
     public Language getLang() {
         return this.lang;
+    }
+
+    public String getGender() {
+        return this.gender;
     }
 }
