@@ -69,7 +69,17 @@ public class ScribeDefaultEnglishNameGeneratorTest {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
         List<String> generated = generator.generateDefaultName();
         List<String> generated2 = generator.generateDefaultName(2);
-        System.out.print(ScribeStringProcessor.joinList(generated) + "\n");
-        System.out.print(ScribeStringProcessor.joinList(generated2) + "\n");
+        List<String> generated3 = generator.generateDefaultName("Mr");
+        List<String> generated4 = generator.generateDefaultName("Ms", 2);
+
+        System.out.print("1 " + ScribeStringProcessor.joinList(generated) + "\n");
+        System.out.print("2 " + ScribeStringProcessor.joinList(generated2) + "\n");
+        System.out.print("3 " + ScribeStringProcessor.joinList(generated3) + "\n");
+        System.out.print("4 " + ScribeStringProcessor.joinList(generated4) + "\n");
+
+        Assertions.assertEquals(3, generated.size(), "ScribeDefaultEnglishNameGenerator.generateDefaultName() should return 1 first, 1 middle, 1 last name.");
+        Assertions.assertEquals(4, generated2.size(), "ScribeDefaultEnglishNameGenerator.generateDefaultName(num) should return 1 first, 2 middle, 1 last name.");
+        Assertions.assertEquals(4, generated3.size(), "ScribeDefaultEnglishNameGenerator.generateDefaultName(title) should return 1 title, 1 first, 1 middle, 1 last name.");
+        Assertions.assertEquals(5, generated4.size(), "ScribeDefaultEnglishNameGenerator.generateDefaultName(title, num) should return 1 title, 1 first, 2 middle, 1 last name.");
     }
 }
