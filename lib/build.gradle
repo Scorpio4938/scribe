@@ -30,6 +30,9 @@ dependencies {
     implementation libs.guava
     
     implementation 'org.json:json:20240205'
+    implementation 'com.google.code.gson:gson:2.11.0'
+
+    implementation 'io.github.cdimascio:dotenv-java:3.0.0'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
