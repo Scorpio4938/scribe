@@ -2,6 +2,11 @@ package com.scorpio4938.scribe.api.llm;
 
 import java.util.List;
 
+/**
+ * Interface class for llm providers.
+ *
+ * @since 0.1.1
+ */
 public class Provider {
     private String provider;
     private String url;

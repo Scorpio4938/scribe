@@ -4,6 +4,11 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.*;
 
+/**
+ * List of all the default llm providers (can add customs providers).
+ *
+ * @since 0.1.1
+ */
 public class Providers {
     private List<Provider> providers = new ArrayList<>();
 

@@ -9,6 +9,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * llm api client.
+ *
+ * @since 0.1.1
+ */
 public class LLMApiClient {
     private Provider provider;
     private int maxTokens;
