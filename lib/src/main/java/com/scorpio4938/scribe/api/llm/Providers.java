@@ -4,10 +4,10 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.*;
 
-public class ProviderConfig {
+public class Providers {
     private List<Provider> providers = new ArrayList<>();
 
-    public ProviderConfig() {
+    public Providers() {
         this.config();
     }
 
@@ -22,15 +22,7 @@ public class ProviderConfig {
         this.providers.add(new Provider(provider, url, dotenv.get(keyName), models));
     }
 
-    // Get the API key for a given provider
-//    public String getApiKey(String provider) {
-//        String apiKey = PROVIDERS.get(provider.toLowerCase());
-//        if (apiKey == null) {
-//            throw new IllegalArgumentException("API key for provider '" + provider + "' not found.");
-//        }
-//        return apiKey;
-//    }
-
+    // Get the specified provider
     public Provider getProvider(String provider) {
         for (Provider provider1 : providers) {
             if (provider1.getProvider().equals(provider)) {
@@ -41,7 +33,7 @@ public class ProviderConfig {
     }
 
     // Get all available providers
-//    public Map<String, String> getProviders() {
-//        return PROVIDERS;
-//    }
+    public List<Provider> getProviders() {
+        return this.providers;
+    }
 }

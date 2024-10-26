@@ -10,33 +10,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class LLMApiClient {
-    //    private String apiKey;
     private Provider provider;
-    //    private String model;
-    private int maxTokens = 100;
+    private int maxTokens;
 
-    // Constructor takes the API key and the provider name (OpenAI, Anthropic, etc.)
-//    public LLMApiClient(String apiKey, String provider) {
-//        this.apiKey = apiKey;
-//        this.provider = provider;
-//    }
-
-    // Get API URL based on the provider
-//    private String getApiUrl(String model) {
-//        switch (provider.toLowerCase()) {
-//            case "openai":
-//                return "https://api.openai.com/v1/chat/completions";
-//            case "anthropic":
-//                return "https://api.anthropic.com/v1/complete"; // Example URL for Anthropic
-//            default:
-//                throw new IllegalArgumentException("Unsupported provider: " + provider);
-//        }
-//    }
-
-    public LLMApiClient(Provider provider1, @Nullable int maxTokens) {
+    // Constructor takes the  provider (OpenAI, Anthropic, etc.) and maxTokens (Default 100)
+    public LLMApiClient(Provider provider1, @Nullable Integer maxTokens) {
         this.provider = provider1;
-//        this.model = model;
-        this.maxTokens = maxTokens;
+        this.maxTokens = (maxTokens != null) ? maxTokens : 100;
     }
 
     private JsonObject setMessage(String model, String userMessage) {
@@ -55,7 +35,7 @@ public class LLMApiClient {
     }
 
     // Send the request based on provider and model
-    public String sendRequest(String model, JsonObject requestBody) throws Exception {
+    public String sendRequest(JsonObject requestBody) throws Exception {
         // Get the appropriate API URL based on the provider
         String apiUrl = this.provider.getUrl();
 
@@ -66,7 +46,7 @@ public class LLMApiClient {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
                 .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + provider.getKey())
+                .header("Authorization", "Bearer " + this.provider.getKey())
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
                 .build();
 
@@ -78,6 +58,6 @@ public class LLMApiClient {
     }
 
     public String callLLM(String model, String message) throws Exception {
-        return this.sendRequest(model, this.setMessage(model, message));
+        return this.sendRequest(this.setMessage(model, message));
     }
 }
