@@ -15,6 +15,12 @@ public class LLMApiClientTest {
     }
 
     @Test
+    void maxTokensTest() {
+        LLMApiClient llm = new LLMApiClient(new Providers().getProvider("DEEPSEEK"), null);
+        Assertions.assertEquals(100, llm.getMaxTokens(), "llm api client show have a default max token of 100.");
+    }
+
+    @Test
     void callLLMTest() throws Exception {
         String result = this.LLMCall();
 //        Assertions.assertNotNull(result);

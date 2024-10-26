@@ -4,7 +4,8 @@
 
 ### Features
 
-* Default generator using llm
+* Default generator using
+  llm ([257418b](https://github.com/Scorpio4938/scribe/commit/257418be0c91d51e115ee8d5462c7d55f027eb18))
     * name
     * region name
     * descriptive text

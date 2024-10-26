@@ -65,4 +65,10 @@ public class LLMApiClient {
     public String callLLM(String model, String message) throws Exception {
         return this.sendRequest(this.setMessage(model, message));
     }
+
+    // Getters
+
+    public int getMaxTokens() {
+        return this.maxTokens;
+    }
 }
