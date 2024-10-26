@@ -3,12 +3,12 @@ package com.scorpio4938.scribe.api.llm;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-public class LLMRequestConfig {
+public class LLMRequestMessage {
     private String model;
     private int maxTokens;
     private String userMessage;
 
-    public LLMRequestConfig(String model, int maxTokens, String userMessage) {
+    public LLMRequestMessage(String model, int maxTokens, String userMessage) {
         this.model = model;
         this.maxTokens = maxTokens;
         this.userMessage = userMessage;
