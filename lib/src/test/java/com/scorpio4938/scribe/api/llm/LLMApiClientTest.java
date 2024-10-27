@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class LLMApiClientTest {
-    private final boolean call = false; // Whether to use llm
+    private final boolean call = true; // Whether to use llm
 
     String LLMCall() throws Exception {
         if (call) {
@@ -18,6 +18,12 @@ public class LLMApiClientTest {
     void maxTokensTest() {
         LLMApiClient llm = new LLMApiClient(new Providers().getProvider("DEEPSEEK"), null);
         Assertions.assertEquals(100, llm.getMaxTokens(), "llm api client show have a default max token of 100.");
+    }
+
+    @Test
+    void setMessageTest() {
+        LLMApiClient llm = new LLMApiClient(new Providers().getProvider("DEEPSEEK"), null);
+        System.out.print("LLM Api client Set Message: " + llm.getSetMessage("deepseek-chat", "give me a english name") + "\n");
     }
 
     @Test

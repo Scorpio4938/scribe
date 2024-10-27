@@ -61,7 +61,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @param gender    The gender of the path.
      * @param nameplace The name-place of the path (first, middle, last).
      * @return A path.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     public String setPath(String gender, String nameplace) {
         return ResourceNamePath + lang.getLang() + "/" + lang.getRegion() + "_" + gender + "_" + nameplace + ".txt";
@@ -73,7 +73,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @param filePath The path to the file.
      * @return A random single name.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     @Override
     public List<String> generate(String filePath) throws IOException {
@@ -90,7 +90,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @param num      The number of name needed.
      * @return A list of random single names.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     @Override
     public List<String> generate(String filePath, int num) throws IOException {
@@ -108,13 +108,12 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
         return names;
     }
 
-
     /**
      * Generate a random first name from the default path.
      *
      * @return A random first name.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     public List<String> generateDefaultFirstName() throws IOException {
         return this.generate(this.FirstNamePath);
@@ -126,7 +125,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @param num The number of middle names.
      * @return A random middle name.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     public List<String> generateDefaultMiddleName(int num) throws IOException {
         return this.generate(this.MiddleNamePath, num);
@@ -137,7 +136,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      *
      * @return A random middle name.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     public List<String> generateDefaultMiddleName() throws IOException {
         return this.generate(this.MiddleNamePath, 1);
@@ -148,7 +147,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      *
      * @return A random last name.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     public List<String> generateDefaultLastName() throws IOException {
         return this.generate(this.LastNamePath);
@@ -159,7 +158,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      *
      * @return A full name.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     public List<String> generateDefaultName() throws IOException {
         return this.generateDefaultName(1);
@@ -171,7 +170,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @param num The number of middle names.
      * @return A full name.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     public List<String> generateDefaultName(int num) throws IOException {
         List<String> names = new ArrayList<>();
@@ -187,7 +186,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @param title The title of the name.
      * @return A full name.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     public List<String> generateDefaultName(String title) throws IOException {
         return this.generateDefaultName(title, 1);
@@ -200,7 +199,7 @@ public class ScribeDefaultEnglishNameGenerator implements LitGenerator {
      * @param num   The number of middle names.
      * @return A full name.
      * @throws IOException If an I/O error occurs.
-     * @since v0.1.0
+     * @since 0.1.0
      */
     public List<String> generateDefaultName(String title, int num) throws IOException {
         List<String> names = new ArrayList<>();

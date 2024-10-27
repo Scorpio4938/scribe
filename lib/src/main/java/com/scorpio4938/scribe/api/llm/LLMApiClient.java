@@ -71,4 +71,8 @@ public class LLMApiClient {
     public int getMaxTokens() {
         return this.maxTokens;
     }
+
+    public JsonObject getSetMessage(String model, String message) {
+        return this.setMessage(model, message);
+    }
 }
