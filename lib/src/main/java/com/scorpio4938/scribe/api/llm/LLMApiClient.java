@@ -43,6 +43,7 @@ public class LLMApiClient {
     public String sendRequest(JsonObject requestBody) throws Exception {
         // Get the appropriate API URL based on the provider
         String apiUrl = this.provider.getUrl();
+        System.out.println("URL: " + apiUrl);
 
         // Create HttpClient
         HttpClient client = HttpClient.newHttpClient();
@@ -57,6 +58,17 @@ public class LLMApiClient {
 
         // Send the request and get the response
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        // Debug
+        System.out.println("----------debug----------");
+        System.out.println("Request Method: " + request.method());
+        System.out.println("Request URI: " + request.uri());
+        System.out.println("Request Headers: " + request.headers());
+        System.out.println("Request: " + request);
+        System.out.println("Status code: " + response.statusCode());
+        System.out.println("Response body: " + response.body());
+//        System.out.println("Response: " + response);
+        System.out.println("-------------------------");
 
         // Return the response body
         return response.body();
