@@ -2,6 +2,7 @@ package com.scorpio4938.scribe.api.llm;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.scorpio4938.scribe.service.utils.debug.Debugger;
 
 import javax.annotation.Nullable;
 import java.net.URI;
@@ -26,7 +27,7 @@ public class LLMApiClient {
 
     private JsonObject setMessage(String model, String userMessage) {
         JsonObject json = new JsonObject();
-        json.addProperty("model", provider.getModel(model));
+        json.addProperty("model", this.provider.getModel(model));
         json.addProperty("max_tokens", this.maxTokens);
 
         JsonArray messages = new JsonArray();
@@ -36,6 +37,7 @@ public class LLMApiClient {
         messages.add(message);
 
         json.add("messages", messages);
+        Debugger.log(json.toString());
         return json;
     }
 
@@ -43,7 +45,7 @@ public class LLMApiClient {
     public String sendRequest(JsonObject requestBody) throws Exception {
         // Get the appropriate API URL based on the provider
         String apiUrl = this.provider.getUrl();
-        System.out.println("URL: " + apiUrl);
+        Debugger.log("URL: " + apiUrl);
 
         // Create HttpClient
         HttpClient client = HttpClient.newHttpClient();
@@ -60,15 +62,15 @@ public class LLMApiClient {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         // Debug
-        System.out.println("----------debug----------");
-        System.out.println("Request Method: " + request.method());
-        System.out.println("Request URI: " + request.uri());
-        System.out.println("Request Headers: " + request.headers());
-        System.out.println("Request: " + request);
-        System.out.println("Status code: " + response.statusCode());
-        System.out.println("Response body: " + response.body());
+        Debugger.log("----------debug----------");
+        Debugger.log("Request Method: " + request.method());
+        Debugger.log("Request URI: " + request.uri());
+        Debugger.log("Request Headers: " + request.headers());
+        Debugger.log("Request: " + request);
+        Debugger.log("Status code: " + response.statusCode());
+        Debugger.log("Response body: " + response.body());
 //        System.out.println("Response: " + response);
-        System.out.println("-------------------------");
+        Debugger.log("-------------------------");
 
         // Return the response body
         return response.body();
