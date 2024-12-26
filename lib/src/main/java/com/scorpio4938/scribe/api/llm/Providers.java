@@ -18,7 +18,7 @@ public class Providers {
 
     private void config() {
         this.addProvider("DEEPSEEK", "https://api.deepseek.com", "DEEPSEEK_API_KEY", List.of("deepseek-chat", "deepseek-coder"));
-        this.addProvider("MOONSHOT", "https://api.moonshot.cn/v1", "MOONSHOT_API_KEY", List.of("moonshot-v1-8k", "moonshot-v1-32k", "moonshot-v1-128k"));
+        this.addProvider("MOONSHOT", "https://api.moonshot.cn/v1/chat/completions", "MOONSHOT_API_KEY", List.of("moonshot-v1-8k", "moonshot-v1-32k", "moonshot-v1-128k"));
         this.addProvider("OPENROUTER", "https://openrouter.ai/api/v1/chat/completions", "OPEN_ROUTER_API_KEY", List.of("google/gemini-exp-1206:free", "google/gemini-2.0-flash-exp:free", "meta-llama/llama-3.2-1b-instruct:free"));
     }
 
