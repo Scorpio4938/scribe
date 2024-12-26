@@ -2,9 +2,14 @@ package com.scorpio4938.scribe.service.utils.debug;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Debugger {
     private static final boolean ENABLED = true; // Set to false to disable debugging logs
+
+    private static final DateTimeFormatter TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final boolean ENABLED_TIME = true; // Set to false to disable debugging time
 
     public static boolean getEnable() {
         return ENABLED;
@@ -17,7 +22,7 @@ public class Debugger {
      */
     public static void log(String message) {
         if (ENABLED) {
-            System.out.println(" [DEBUG] " + message);
+            System.out.println(formatTimestamp() + " [DEBUG] " + message);
         }
     }
 
@@ -29,7 +34,34 @@ public class Debugger {
      */
     public static void log(String logType, String message) {
         if (ENABLED) {
-            System.out.println(" [" + logType.toUpperCase() + "] " + message);
+            System.out.println(formatTimestamp() + " [" + logType.toUpperCase() + "] " + message);
+        }
+    }
+
+    /**
+     * Logs an object's string representation.
+     *
+     * @param object The object to log.
+     * @apiNote Need some overridden .toString function of the object
+     */
+    public static void inspect(Object object) {
+        if (ENABLED) {
+            String description = (object == null) ? "null" : object.toString();
+            System.out.println(formatTimestamp() + " [INSPECT] " + description);
+        }
+    }
+
+    /**
+     * Logs an object's string representation.
+     *
+     * @param label  The label for the object.
+     * @param object The object to log.
+     * @apiNote Need some overridden .toString function of the object
+     */
+    public static void inspect(String label, Object object) {
+        if (ENABLED) {
+            String description = (object == null) ? "null" : object.toString();
+            System.out.println(formatTimestamp() + " [INSPECT] " + label + ": " + description);
         }
     }
 
@@ -43,7 +75,26 @@ public class Debugger {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             exception.printStackTrace(pw);
-            System.out.println(" [EXCEPTION] " + sw);
+            System.out.println(formatTimestamp() + " [EXCEPTION] " + sw);
+        }
+    }
+
+    public static void logTime() {
+        if (ENABLED_TIME) {
+            System.out.println(" [TIME] " + formatTimestamp());
+        }
+    }
+
+    /**
+     * Formats the current timestamp for logging.
+     *
+     * @return A formatted timestamp.
+     */
+    private static String formatTimestamp() {
+        if (ENABLED_TIME) {
+            return LocalDateTime.now().format(TIMESTAMP_FORMATTER);
+        } else {
+            return "";
         }
     }
 }

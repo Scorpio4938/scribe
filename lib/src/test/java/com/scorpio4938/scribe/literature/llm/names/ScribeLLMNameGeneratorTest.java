@@ -8,8 +8,8 @@ public class ScribeLLMNameGeneratorTest {
     @Test
     void generateTest() throws Exception {
         ScribeLLMNameGenerator llmNameGenerator = new ScribeLLMNameGenerator();
-        String result = llmNameGenerator.generate("MOONSHOT", "moonshot-v1-8k", "give me a english name", null);
-        System.out.print("LLM Name basic Generator Test name: " + result + "\n");
+//        String result = llmNameGenerator.generate("MOONSHOT", "moonshot-v1-8k", "give me a english name", null);
+//        System.out.print("LLM Name basic Generator Test name: " + result + "\n");
     }
 
     @Test

@@ -6,31 +6,38 @@ import org.junit.jupiter.api.Assertions;
 
 public class DebuggerTest {
     @Test
-    public void testLogInfo() {
+    void testLogInfo() {
         // Arrange
-        String message = "This is an informational message.";
+        String message = "This is an test informational message.";
 
         // Act
-        Debugger.log("This is an informational message.");
+        Debugger.log(message);
 
         // Assert
         Assertions.assertTrue(Debugger.getEnable(), "Debugger is not enabled.");
     }
 
     @Test
-    public void testLogWarning() {
+    void testLogWarning() {
         // Arrange
-        String message = "This is a warning message.";
+        String message = "This is a test warning message.";
 
         // Act
-        Debugger.log("WARNING", "This is a warning message.");
+        Debugger.log("WARNING", message);
 
         // Assert
         Assertions.assertTrue(Debugger.getEnable(), "Debugger is not enabled.");
     }
 
     @Test
-    public void testLogException() {
+    void testInspect() {
+        TestObject message = new TestObject("Hello");
+        Debugger.inspect(message);
+        Debugger.inspect("Test Object Detail", message);
+    }
+
+    @Test
+    void testLogException() {
         // Arrange
         String message = "Stack trace of the exception.";
 
@@ -40,5 +47,13 @@ public class DebuggerTest {
 
         // Assert
         Assertions.assertTrue(Debugger.getEnable(), "Debugger is not enabled.");
+    }
+
+    private static class TestObject {
+        private String name;
+
+        private TestObject(String name) {
+            this.name = name;
+        }
     }
 }
