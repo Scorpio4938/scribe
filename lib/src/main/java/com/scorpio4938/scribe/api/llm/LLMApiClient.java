@@ -1,5 +1,7 @@
 package com.scorpio4938.scribe.api.llm;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.scorpio4938.scribe.service.utils.debug.Debugger;
@@ -9,6 +11,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 /**
  * llm api client.
@@ -37,8 +40,13 @@ public class LLMApiClient {
         messages.add(message);
 
         json.add("messages", messages);
-        Debugger.log(json.toString());
+        Debugger.log("message" + json.toString());
         return json;
+    }
+
+    private String setMessage1(String model, String userMessage) {
+        Gson gson = new GsonBuilder().create();
+        return gson.toJson(new LLMRequest(model, List.of(new LLMRequest.Message("user", userMessage))));
     }
 
     // Send the request based on provider and model
@@ -63,6 +71,43 @@ public class LLMApiClient {
 
         // Debug
         Debugger.log("----------debug----------");
+        System.out.print("request body: " + requestBody);
+        Debugger.log("Request Method: " + request.method());
+        Debugger.log("Request URI: " + request.uri());
+        Debugger.log("Request Headers: " + request.headers());
+        Debugger.log("Request: " + request);
+        Debugger.log("Status code: " + response.statusCode());
+        Debugger.log("Response body: " + response.body());
+//        System.out.println("Response: " + response);
+        Debugger.log("-------------------------");
+
+        // Return the response body
+        return response.body();
+    }
+
+    // Send the request based on provider and model
+    public String sendRequest1(String requestBody) throws Exception {
+        // Get the appropriate API URL based on the provider
+        String apiUrl = this.provider.getUrl();
+        Debugger.log("URL: " + apiUrl);
+
+        // Create HttpClient
+        HttpClient client = HttpClient.newHttpClient();
+
+        // Create HttpRequest
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(apiUrl))
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + this.provider.getKey())
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        // Send the request and get the response
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        // Debug
+        Debugger.log("----------debug func 1----------");
+        System.out.print("request body: " + requestBody);
         Debugger.log("Request Method: " + request.method());
         Debugger.log("Request URI: " + request.uri());
         Debugger.log("Request Headers: " + request.headers());
@@ -85,7 +130,7 @@ public class LLMApiClient {
      * @throws Exception If there is an error sending the request.
      */
     public String callLLM(String model, String message) throws Exception {
-        return this.sendRequest(this.setMessage(model, message));
+        return this.sendRequest1(this.setMessage1(model, message));
     }
 
     // Getters

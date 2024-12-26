@@ -22,7 +22,7 @@ public class ScribeLLMNameGeneratorTest {
     @Test
     void generateFullNameTest() throws Exception {
         ScribeLLMNameGenerator llmNameGenerator = new ScribeLLMNameGenerator();
-        String result = llmNameGenerator.generateFullName("OPENROUTER", "google/gemini-2.0-flash-exp:free", null, "english");
+        String result = llmNameGenerator.generateFullName("OPENROUTER", "meta-llama/llama-3.2-1b-instruct:free", null, "english");
         System.out.print("LLM full Name Generator Test name: " + result + "\n");
     }
 }
