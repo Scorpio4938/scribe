@@ -50,7 +50,7 @@ public class LLMApiClient {
     }
 
     // Send the request based on provider and model
-    public String sendRequest(JsonObject requestBody) throws Exception {
+    private String sendRequest(JsonObject requestBody) throws Exception {
         // Get the appropriate API URL based on the provider
         String apiUrl = this.provider.getUrl();
         Debugger.log("URL: " + apiUrl);
@@ -86,7 +86,7 @@ public class LLMApiClient {
     }
 
     // Send the request based on provider and model
-    public String sendRequest1(String requestBody) throws Exception {
+    private String sendRequest1(String requestBody) throws Exception {
         // Get the appropriate API URL based on the provider
         String apiUrl = this.provider.getUrl();
         Debugger.log("URL: " + apiUrl);
