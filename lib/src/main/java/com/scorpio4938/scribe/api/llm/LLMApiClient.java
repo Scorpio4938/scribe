@@ -74,16 +74,36 @@ public class LLMApiClient {
         return response.body();
     }
 
+    /**
+     * Call the LLM with the given model and message.
+     *
+     * @param model   The model to use.
+     * @param message The message to send to the LLM.
+     * @return The response from the LLM.
+     * @throws Exception If there is an error sending the request.
+     */
     public String callLLM(String model, String message) throws Exception {
         return this.sendRequest(this.setMessage(model, message));
     }
 
     // Getters
 
+    /**
+     * Get the max tokens.
+     *
+     * @return The max tokens.
+     */
     public int getMaxTokens() {
         return this.maxTokens;
     }
 
+    /**
+     * Get the set message.
+     *
+     * @param model   The model to use.
+     * @param message The message to send to the LLM.
+     * @return The set message.
+     */
     public JsonObject getSetMessage(String model, String message) {
         return this.setMessage(model, message);
     }

@@ -14,6 +14,11 @@ public class LLMRequestMessage {
         this.userMessage = userMessage;
     }
 
+    /**
+     * Builds a JSON object for the LLM request.
+     *
+     * @return The JSON object for the LLM request.
+     */
     public JsonObject buildRequestJson() {
         JsonObject json = new JsonObject();
         json.addProperty("model", model);

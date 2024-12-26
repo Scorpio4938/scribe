@@ -21,6 +21,12 @@ public class Debugger {
         }
     }
 
+    /**
+     * Logs a debug message with a timestamp and a log type.
+     *
+     * @param logType The type of log (e.g., "info", "warning", "error").
+     * @param message The debug message to log.
+     */
     public static void log(String logType, String message) {
         if (ENABLED) {
             System.out.println(" [" + logType.toUpperCase() + "] " + message);

@@ -22,13 +22,26 @@ public class Providers {
         this.addProvider("OPENROUTER", "https://openrouter.ai/api/v1", "OPEN_ROUTER_API_KEY", List.of("google/gemini-exp-1206:free", "google/gemini-2.0-flash-exp:free"));
     }
 
-    // Add a new provider and its corresponding API key
+    /**
+     * Add a new provider and its corresponding API key.
+     *
+     * @param provider The name of the provider.
+     * @param url      The URL of the provider's API.
+     * @param keyName  The name of the environment variable that contains the API key.
+     * @param models   The list
+     */
     public void addProvider(String provider, String url, String keyName, List<String> models) {
         Dotenv dotenv = Dotenv.load();
         this.providers.add(new Provider(provider, url, dotenv.get(keyName), models));
     }
 
-    // Get the specified provider
+    /**
+     * Get the specified provider.
+     *
+     * @param provider The name of the provider.
+     * @return The provider object.
+     * @throws IllegalArgumentException If the provider is not supported.
+     */
     public Provider getProvider(String provider) {
         for (Provider provider1 : providers) {
             if (provider1.getProvider().equals(provider)) {
@@ -38,7 +51,11 @@ public class Providers {
         throw new IllegalArgumentException("Unsupported provider: " + provider);
     }
 
-    // Get all available providers
+    /**
+     * Get all available providers.
+     *
+     * @return A list of all available providers.
+     */
     public List<Provider> getProviders() {
         return this.providers;
     }
