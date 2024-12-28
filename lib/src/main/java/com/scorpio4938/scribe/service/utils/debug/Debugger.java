@@ -21,9 +21,11 @@ public class Debugger {
      * @param message The debug message to log.
      */
     public static void log(String message) {
-        if (ENABLED) {
-            System.out.println(formatTimestamp() + " [DEBUG] " + message);
-        }
+        log("DEBUG", message);
+    }
+
+    public static void log(Object message) {
+        log("DEBUG", message);
     }
 
     /**
@@ -33,6 +35,12 @@ public class Debugger {
      * @param message The debug message to log.
      */
     public static void log(String logType, String message) {
+        if (ENABLED) {
+            System.out.println(formatTimestamp() + " [" + logType.toUpperCase() + "] " + message);
+        }
+    }
+
+    public static void log(String logType, Object message) {
         if (ENABLED) {
             System.out.println(formatTimestamp() + " [" + logType.toUpperCase() + "] " + message);
         }
