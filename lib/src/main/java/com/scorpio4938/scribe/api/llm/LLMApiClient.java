@@ -46,14 +46,13 @@ public class LLMApiClient {
 
     private String setMessage1(String model, String userMessage) {
         Gson gson = new GsonBuilder().create();
-        return gson.toJson(new LLMRequest(model, List.of(new LLMRequest.Message("user", userMessage))));
+        return gson.toJson(new LLMRequest(this.provider.getModel(model), List.of(new LLMRequest.Message("user", userMessage))));
     }
 
     // Send the request based on provider and model
     private String sendRequest(JsonObject requestBody) throws Exception {
         // Get the appropriate API URL based on the provider
         String apiUrl = this.provider.getUrl();
-        Debugger.log("URL: " + apiUrl);
 
         // Create HttpClient
         HttpClient client = HttpClient.newHttpClient();
@@ -70,16 +69,8 @@ public class LLMApiClient {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         // Debug
-        Debugger.log("----------debug----------");
-        System.out.print("request body: " + requestBody);
-        Debugger.log("Request Method: " + request.method());
-        Debugger.log("Request URI: " + request.uri());
         Debugger.log("Request Headers: " + request.headers());
-        Debugger.log("Request: " + request);
-        Debugger.log("Status code: " + response.statusCode());
         Debugger.log("Response body: " + response.body());
-//        System.out.println("Response: " + response);
-        Debugger.log("-------------------------");
 
         // Return the response body
         return response.body();
@@ -89,7 +80,6 @@ public class LLMApiClient {
     private String sendRequest1(String requestBody) throws Exception {
         // Get the appropriate API URL based on the provider
         String apiUrl = this.provider.getUrl();
-        Debugger.log("URL: " + apiUrl);
 
         // Create HttpClient
         HttpClient client = HttpClient.newHttpClient();
@@ -106,16 +96,8 @@ public class LLMApiClient {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         // Debug
-        Debugger.log("----------debug func 1----------");
-        System.out.print("request body: " + requestBody);
-        Debugger.log("Request Method: " + request.method());
-        Debugger.log("Request URI: " + request.uri());
         Debugger.log("Request Headers: " + request.headers());
-        Debugger.log("Request: " + request);
-        Debugger.log("Status code: " + response.statusCode());
         Debugger.log("Response body: " + response.body());
-//        System.out.println("Response: " + response);
-        Debugger.log("-------------------------");
 
         // Return the response body
         return response.body();
@@ -153,5 +135,16 @@ public class LLMApiClient {
      */
     public JsonObject getSetMessage(String model, String message) {
         return this.setMessage(model, message);
+    }
+
+    /**
+     * Get the set message.
+     *
+     * @param model   The model to use.
+     * @param message The message to send to the LLM.
+     * @return The set message.
+     */
+    public String getSetMessage1(String model, String message) {
+        return this.setMessage1(model, message);
     }
 }

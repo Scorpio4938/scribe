@@ -2,6 +2,7 @@ package com.scorpio4938.scribe.literature.names;
 
 import com.scorpio4938.scribe.service.reader.ScribeFileReader;
 import com.scorpio4938.scribe.service.utils.ScribeStringProcessor;
+import com.scorpio4938.scribe.service.utils.debug.Debugger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,7 @@ public class ScribeDefaultEnglishNameGeneratorTest {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
         List<String> generatedName = generator.generate(EngNamePath);
         List<String> generatedName2 = generator.generate(EngNamePath, 2);
-        System.out.print(ScribeStringProcessor.joinList(generatedName2) + "\n");
+        Debugger.log(ScribeStringProcessor.joinList(generatedName2));
         Assertions.assertTrue(readExampleList().contains(generatedName.get(0)), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return of name from: " + EngNamePath);
 
 //        Assertions.assertTrue(readExampleList().contains(generatedName2), "ScribeDefaultEnglishNameGenerator.generate(filePath, num) should return of name from: " + EngNamePath);
@@ -47,7 +48,7 @@ public class ScribeDefaultEnglishNameGeneratorTest {
     void generateDefaultFirstNameTest() throws IOException {
         ScribeDefaultEnglishNameGenerator generator = new ScribeDefaultEnglishNameGenerator();
         List<String> generatedName = generator.generateDefaultFirstName();
-        System.out.print(ScribeStringProcessor.joinList(generatedName) + "\n");
+        Debugger.log(ScribeStringProcessor.joinList(generatedName));
         Assertions.assertNotNull(generatedName, "ScribeDefaultEnglishNameGenerator.generateDefaultFirstName() should not be return null from its default file path.");
     }
 
@@ -72,10 +73,10 @@ public class ScribeDefaultEnglishNameGeneratorTest {
         List<String> generated3 = generator.generateDefaultName("Mr");
         List<String> generated4 = generator.generateDefaultName("Ms", 2);
 
-        System.out.print("1 " + ScribeStringProcessor.joinList(generated) + "\n");
-        System.out.print("2 " + ScribeStringProcessor.joinList(generated2) + "\n");
-        System.out.print("3 " + ScribeStringProcessor.joinList(generated3) + "\n");
-        System.out.print("4 " + ScribeStringProcessor.joinList(generated4) + "\n");
+        Debugger.log("1 " + ScribeStringProcessor.joinList(generated));
+        Debugger.log("2 " + ScribeStringProcessor.joinList(generated2));
+        Debugger.log("3 " + ScribeStringProcessor.joinList(generated3));
+        Debugger.log("4 " + ScribeStringProcessor.joinList(generated4));
 
         Assertions.assertEquals(3, generated.size(), "ScribeDefaultEnglishNameGenerator.generateDefaultName() should return 1 first, 1 middle, 1 last name.");
         Assertions.assertEquals(4, generated2.size(), "ScribeDefaultEnglishNameGenerator.generateDefaultName(num) should return 1 first, 2 middle, 1 last name.");
