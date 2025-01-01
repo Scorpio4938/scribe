@@ -48,7 +48,7 @@ public class LLMApiClient {
     private String setMessage1(String model, String userMessage) {
 //        Gson gson = new GsonBuilder().create();
 //        return gson.toJson(new LLMRequest(this.provider.getModel(model), List.of(new LLMRequest.Message("user", userMessage))));
-        return new LLMRequest(this.provider.getModel(model), null).buildMessage(Map.of("user", userMessage));
+        return new LLMRequest(this.provider.getModel(model), null, null).buildMessage(Map.of("user", userMessage));
     }
 
     // Send the request based on provider and model

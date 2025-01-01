@@ -12,10 +12,12 @@ import java.util.Map;
 public class LLMRequest {
     private String model;
     private List<Message> messages;
+    private int maxTokens;
 
-    public LLMRequest(String model, @Nullable List<Message> messages) {
+    public LLMRequest(String model, @Nullable List<Message> messages, @Nullable Integer maxTokens) {
         this.model = model;
         this.messages = messages;
+        this.maxTokens = (maxTokens != null) ? maxTokens : 100;
     }
 
     public LLMRequest.Message createMessage(String role, String content) {
@@ -33,7 +35,7 @@ public class LLMRequest {
             messages.add(createMessage(entry.getKey(), entry.getValue()));
         }
 
-        return gson.toJson(new LLMRequest(this.model, messages));
+        return gson.toJson(new LLMRequest(this.model, messages, this.maxTokens));
     }
 
     public static class Message {
