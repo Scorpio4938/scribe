@@ -12,6 +12,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Map;
 
 /**
  * llm api client.
@@ -45,8 +46,9 @@ public class LLMApiClient {
     }
 
     private String setMessage1(String model, String userMessage) {
-        Gson gson = new GsonBuilder().create();
-        return gson.toJson(new LLMRequest(this.provider.getModel(model), List.of(new LLMRequest.Message("user", userMessage))));
+//        Gson gson = new GsonBuilder().create();
+//        return gson.toJson(new LLMRequest(this.provider.getModel(model), List.of(new LLMRequest.Message("user", userMessage))));
+        return new LLMRequest(this.provider.getModel(model), null).buildMessage(Map.of("user", userMessage));
     }
 
     // Send the request based on provider and model

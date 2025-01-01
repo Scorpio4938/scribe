@@ -1,20 +1,16 @@
 package com.scorpio4938.scribe.api.llm;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.List;
-import java.util.Map;
 
 public class LLMRequestMessage {
-    private String model;
-    private int maxTokens;
-    private String userMessage;
 
-    public LLMRequestMessage(String model, int maxTokens, String userMessage) {
-        this.model = model;
-        this.maxTokens = maxTokens;
-        this.userMessage = userMessage;
+    public LLMRequestMessage() {
+
     }
 
     /**
@@ -22,7 +18,7 @@ public class LLMRequestMessage {
      *
      * @return The JSON object for the LLM request.
      */
-    public JsonObject buildRequestJson() {
+    public JsonObject setJsonMessage(String model, int maxTokens, String userMessage) {
         JsonObject json = new JsonObject();
         json.addProperty("model", model);
         json.addProperty("max_tokens", maxTokens);
@@ -36,6 +32,12 @@ public class LLMRequestMessage {
         json.add("messages", messages);
         return json;
     }
+
+    
+//    private String gsonMessage(Provider provider, String model, String userMessage) {
+//        Gson gson = new GsonBuilder().create();
+//        return gson.toJson(new LLMRequest(provider.getModel(model), List.of(new LLMRequest.Message("user", userMessage))));
+//    }
 //
 //    public String setBody() {
 //        // Construct the JSON payload
