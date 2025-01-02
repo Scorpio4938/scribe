@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.scorpio4938.scribe.service.utils.MapSorter;
 import com.scorpio4938.scribe.service.utils.debug.Debugger;
 
 import javax.annotation.Nullable;
@@ -11,6 +12,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -48,7 +50,23 @@ public class LLMApiClient {
     private String setMessage1(String model, String userMessage) {
 //        Gson gson = new GsonBuilder().create();
 //        return gson.toJson(new LLMRequest(this.provider.getModel(model), List.of(new LLMRequest.Message("user", userMessage))));
-        return new LLMRequest(this.provider.getModel(model), null, null).buildMessage(Map.of("user", userMessage));
+//        return new LLMRequest(this.provider.getModel(model), null, null).buildMessage(Map.of("user", userMessage));
+        return "";
+    }
+
+    private String buildMessage(String model, Map<String, String> map) {
+        Gson gson = new GsonBuilder().create();
+
+        List<LLMRequest.Message> messages = new ArrayList<>();
+        Map<String, String> sorted = MapSorter.sortByKeys(map);
+//        LLMRequest.Message systemMessage = this.createMessage("system", "You are a helpful assistant.");
+//        LLMRequest.Message userMessage = this.createMessage("user", "Tell me a joke about programming.");
+
+        for (Map.Entry<String, String> entry : sorted.entrySet()) {
+            messages.add(LLMRequest.createMessage(entry.getKey(), entry.getValue()));
+        }
+
+        return gson.toJson(new LLMRequest(this.provider.getModel(model), messages, this.maxTokens));
     }
 
     // Send the request based on provider and model
@@ -114,7 +132,7 @@ public class LLMApiClient {
      * @throws Exception If there is an error sending the request.
      */
     public String callLLM(String model, String message) throws Exception {
-        return this.sendRequest1(this.setMessage1(model, message));
+        return this.sendRequest1(this.buildMessage(model, Map.of("user", message)));
     }
 
     // Getters

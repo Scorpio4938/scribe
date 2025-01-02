@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.scorpio4938.scribe.service.utils.MapSorter;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LLMRequestMessage {
 
@@ -33,7 +36,6 @@ public class LLMRequestMessage {
         return json;
     }
 
-    
 //    private String gsonMessage(Provider provider, String model, String userMessage) {
 //        Gson gson = new GsonBuilder().create();
 //        return gson.toJson(new LLMRequest(provider.getModel(model), List.of(new LLMRequest.Message("user", userMessage))));

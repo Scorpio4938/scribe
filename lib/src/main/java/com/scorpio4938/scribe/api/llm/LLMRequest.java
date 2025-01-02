@@ -20,23 +20,23 @@ public class LLMRequest {
         this.maxTokens = (maxTokens != null) ? maxTokens : 100;
     }
 
-    public LLMRequest.Message createMessage(String role, String content) {
+    public static LLMRequest.Message createMessage(String role, String content) {
         return new LLMRequest.Message(role, content);
     }
 
-    public String buildMessage(Map<String, String> map) {
-        Gson gson = new GsonBuilder().create();
-
-        List<Message> messages = new ArrayList<>();
-        Map<String, String> sorted = MapSorter.sortByKeys(map);
-//        LLMRequest.Message systemMessage = this.createMessage("system", "You are a helpful assistant.");
-//        LLMRequest.Message userMessage = this.createMessage("user", "Tell me a joke about programming.");
-        for (Map.Entry<String, String> entry : sorted.entrySet()) {
-            messages.add(createMessage(entry.getKey(), entry.getValue()));
-        }
-
-        return gson.toJson(new LLMRequest(this.model, messages, this.maxTokens));
-    }
+//    public String buildMessage(Map<String, String> map) {
+//        Gson gson = new GsonBuilder().create();
+//
+//        List<Message> messages = new ArrayList<>();
+//        Map<String, String> sorted = MapSorter.sortByKeys(map);
+////        LLMRequest.Message systemMessage = this.createMessage("system", "You are a helpful assistant.");
+////        LLMRequest.Message userMessage = this.createMessage("user", "Tell me a joke about programming.");
+//        for (Map.Entry<String, String> entry : sorted.entrySet()) {
+//            messages.add(createMessage(entry.getKey(), entry.getValue()));
+//        }
+//
+//        return gson.toJson(new LLMRequest(this.model, messages, this.maxTokens));
+//    }
 
     public static class Message {
         private String role;
