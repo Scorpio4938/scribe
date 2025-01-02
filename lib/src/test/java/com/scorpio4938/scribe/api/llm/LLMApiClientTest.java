@@ -21,13 +21,13 @@ public class LLMApiClientTest {
     }
 
     @Test
-    void setMessageTest() {
+    void setJsonMessageTest() {
         LLMApiClient llm = new LLMApiClient(new Providers().getProvider("OPENROUTER"), null);
         Assertions.assertEquals("{\"model\":\"google/gemini-2.0-flash-exp:free\",\"max_tokens\":100,\"messages\":[{\"role\":\"user\",\"content\":\"give me a english name\"}]}", llm.getSetMessage("google/gemini-2.0-flash-exp:free", "give me a english name").toString(), "False LLM Message Setter");
     }
 
     @Test
-    void setMessage1Test() {
+    void setJsonMessage1Test() {
         LLMApiClient llm = new LLMApiClient(new Providers().getProvider("OPENROUTER"), null);
 //        Assertions.assertEquals("{\"model\":\"google/gemini-2.0-flash-exp:free\",\"messages\":[{\"role\":\"user\",\"content\":\"give me a english name\"}]}", llm.getSetMessage1("google/gemini-2.0-flash-exp:free", "give me a english name"), "False LLM Message Setter");
     }

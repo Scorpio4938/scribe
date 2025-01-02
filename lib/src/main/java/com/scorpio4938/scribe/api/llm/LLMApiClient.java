@@ -31,7 +31,7 @@ public class LLMApiClient {
         this.maxTokens = (maxTokens != null) ? maxTokens : 100;
     }
 
-    private JsonObject setMessage(String model, String userMessage) {
+    private JsonObject setJsonMessage(String model, String userMessage) {
         JsonObject json = new JsonObject();
         json.addProperty("model", this.provider.getModel(model));
         json.addProperty("max_tokens", this.maxTokens);
@@ -45,13 +45,6 @@ public class LLMApiClient {
         json.add("messages", messages);
         Debugger.log("message" + json.toString());
         return json;
-    }
-
-    private String setMessage1(String model, String userMessage) {
-//        Gson gson = new GsonBuilder().create();
-//        return gson.toJson(new LLMRequest(this.provider.getModel(model), List.of(new LLMRequest.Message("user", userMessage))));
-//        return new LLMRequest(this.provider.getModel(model), null, null).buildMessage(Map.of("user", userMessage));
-        return "";
     }
 
     private String buildMessage(String model, Map<String, String> map) {
@@ -154,17 +147,6 @@ public class LLMApiClient {
      * @return The set message.
      */
     public JsonObject getSetMessage(String model, String message) {
-        return this.setMessage(model, message);
-    }
-
-    /**
-     * Get the set message.
-     *
-     * @param model   The model to use.
-     * @param message The message to send to the LLM.
-     * @return The set message.
-     */
-    public String getSetMessage1(String model, String message) {
-        return this.setMessage1(model, message);
+        return this.setJsonMessage(model, message);
     }
 }
