@@ -3,13 +3,15 @@ package com.scorpio4938.scribe.api.llm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 public class LLMApiClientTest {
     private final boolean call = false; // Whether to use llm
 
     String LLMCall() throws Exception {
         if (call) {
             LLMApiClient llm = new LLMApiClient(new Providers().getProvider("OPENROUTER"), null);
-            return llm.callLLM("google/gemini-2.0-flash-exp:free", "give me a english name");
+            return llm.callLLM("google/gemini-2.0-flash-exp:free", Map.of("user", "give me a english name"));
         }
         return null;
     }
@@ -17,7 +19,7 @@ public class LLMApiClientTest {
     @Test
     void maxTokensTest() {
         LLMApiClient llm = new LLMApiClient(new Providers().getProvider("OPENROUTER"), null);
-        Assertions.assertEquals(100, llm.getMaxTokens(), "llm api client show have a default maxtoken of 100");
+        Assertions.assertEquals(100, llm.getMaxTokens(), "llm api client should have a default maxtoken of 100");
     }
 
     @Test

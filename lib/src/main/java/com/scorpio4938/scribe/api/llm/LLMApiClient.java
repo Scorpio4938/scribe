@@ -25,6 +25,8 @@ public class LLMApiClient {
     private Provider provider;
     private int maxTokens;
 
+    private Gson gson = new GsonBuilder().create();
+
     // Constructor takes the  provider (OpenAI, Anthropic, etc.) and maxTokens (Default 100)
     public LLMApiClient(Provider provider1, @Nullable Integer maxTokens) {
         this.provider = provider1;
@@ -48,7 +50,6 @@ public class LLMApiClient {
     }
 
     private String buildMessage(String model, Map<String, String> map) {
-        Gson gson = new GsonBuilder().create();
 
         List<LLMRequest.Message> messages = new ArrayList<>();
         Map<String, String> sorted = MapSorter.sortByKeys(map);
@@ -59,7 +60,7 @@ public class LLMApiClient {
             messages.add(LLMRequest.createMessage(entry.getKey(), entry.getValue()));
         }
 
-        return gson.toJson(new LLMRequest(this.provider.getModel(model), messages, this.maxTokens));
+        return this.gson.toJson(new LLMRequest(this.provider.getModel(model), messages, this.maxTokens));
     }
 
     // Send the request based on provider and model
@@ -116,6 +117,11 @@ public class LLMApiClient {
         return response.body();
     }
 
+    private String response(String response) {
+        LLMResponse llmResponse = this.gson.fromJson(response, LLMResponse.class);
+        return llmResponse.getFirstMessageContent();
+    }
+
     /**
      * Call the LLM with the given model and message.
      *
@@ -124,8 +130,8 @@ public class LLMApiClient {
      * @return The response from the LLM.
      * @throws Exception If there is an error sending the request.
      */
-    public String callLLM(String model, String message) throws Exception {
-        return this.sendRequest1(this.buildMessage(model, Map.of("user", message)));
+    public String callLLM(String model, Map<String, String> message) throws Exception {
+        return this.response(this.sendRequest1(this.buildMessage(model, message)));
     }
 
     // Getters

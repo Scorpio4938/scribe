@@ -8,6 +8,7 @@ import com.scorpio4938.scribe.literature.llm.LitLLMGenerator;
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class ScribeLLMNameGenerator implements LitLLMGenerator {
     public ScribeLLMNameGenerator() {
@@ -22,7 +23,7 @@ public class ScribeLLMNameGenerator implements LitLLMGenerator {
     @Override
     public String generate(String provider, String model, String message, @Nullable Integer maxTokens) throws Exception {
         LLMApiClient llm = new LLMApiClient(new Providers().getProvider(provider), maxTokens);
-        return llm.callLLM(model, message);
+        return llm.callLLM(model, Map.of("user", message)); // Temp setting for message mapping
     }
 
     @Override
